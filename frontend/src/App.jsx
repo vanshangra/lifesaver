@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
-const API_URL = 'http://localhost:3000/api'
-
+const API_URL = 'https://lifesaver-production-2183.up.railway.app/api'
 function App() {
   const [taskInput, setTaskInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -108,14 +107,18 @@ function App() {
   const savePlan = async () => {
     if (!response) return
     try {
-      await axios.post(`${API_URL}/save-plan`, {
+      const planData = {
         input: taskInput,
-        schedule: response.response?.schedule,
-        reasoning: response.reply
-      })
+        schedule: JSON.stringify(response.response?.schedule || []),
+        reasoning: response.reply,
+        createdAt: new Date().toISOString()
+      }
+      
+      await axios.post(`${API_URL}/save-plan`, planData)
       fetchSavedPlans()
+      console.log('Plan saved successfully!')
     } catch (err) {
-      console.log('Failed to save plan')
+      console.error('Failed to save plan:', err.response?.data)
     }
   }
 
