@@ -285,14 +285,22 @@ app.post("/api/agent", async (req, res) => {
 app.post("/api/save-plan", async (req, res) => {
   try {
     const { input, schedule, reasoning } = req.body;
-    if (!input || !schedule || !reasoning) {
-      return res.status(400).json({ error: "Missing required fields" });
+    
+    // Proper validation - allows empty arrays/strings
+    if (input === undefined || input === null || input === '') {
+      return res.status(400).json({ error: "input is required" });
+    }
+    if (schedule === undefined || schedule === null) {
+      return res.status(400).json({ error: "schedule is required" });
+    }
+    if (reasoning === undefined || reasoning === null || reasoning === '') {
+      return res.status(400).json({ error: "reasoning is required" });
     }
 
     const plan = {
       id: plans.length + 1,
       input,
-      schedule,
+      schedule: typeof schedule === 'string' ? JSON.parse(schedule) : schedule,
       reasoning,
       createdAt: new Date().toISOString(),
     };
