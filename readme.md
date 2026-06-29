@@ -515,11 +515,8 @@ Questions? Issues? Open a GitHub issue or email support@lifesaver.app
 
 ## Links
 
-- **Live Demo:** [https://lifesaver.web.app](https://lifesaver.web.app)
+- **Live Demo:** [https://lifesaver-ai.netlify.app/](https://lifesaver-ai.netlify.app/)
 - **GitHub:** [github.com/vanshangra/lifesaver](https://github.com)
-- **API Docs:** [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
-- **Architecture:** [ARCHITECTURE.md](./ARCHITECTURE.md)
-
 ---
 
 **Made with ❤️ during Vibe2Ship Hackathon**
