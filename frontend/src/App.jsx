@@ -3,6 +3,7 @@ import axios from 'axios'
 import './App.css'
 
 const API_URL = 'https://lifesaver-production-2183.up.railway.app/api'
+
 function App() {
   const [taskInput, setTaskInput] = useState('')
   const [loading, setLoading] = useState(false)
